@@ -27,11 +27,7 @@ const Nav = ({ isMenu, menuToggle }) => {
                 )}
             </ul>
 
-            <Button
-                to="https://react-cms-template.developteam.net/admins"
-                className={classes.booknow}
-                onClick={menuToggle}
-            >
+            <Button to="https://shop-cms.developteam.net/admins" className={classes.booknow} onClick={menuToggle}>
                 CMS
             </Button>
         </nav>

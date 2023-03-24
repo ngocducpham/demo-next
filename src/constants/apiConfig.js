@@ -43,12 +43,12 @@ const apiConfig = {
     },
     news: {
         getList: {
-            baseURL: `${apiUrl}v1/news/list`,
+            baseURL: `${apiUrl}v1/news/list-news`,
             method: 'GET',
             headers: baseHeader,
         },
         getById: {
-            baseURL: `${apiUrl}v1/news/get/:id`,
+            baseURL: `${apiUrl}v1/news/get-news`,
             method: 'GET',
             headers: baseHeader,
         },

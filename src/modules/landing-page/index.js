@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 import Hero from './Hero/Hero';
 import Locations from './Locations/Locations';
 
-const LandingPage = () => {
+const LandingPage = ({ news }) => {
     return (
         <Fragment>
             <Hero />
-            <Locations />
+            <Locations news={news} />
         </Fragment>
     );
 };

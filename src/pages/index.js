@@ -3,26 +3,28 @@ import Head from 'next/head';
 import LandingPage from '@/modules/landing-page';
 import { sendRequest } from '@/services/api';
 import apiConfig from '@/constants/apiConfig';
+import axios from 'axios';
 
-function Home() {
+function Home({ news }) {
     return (
         <PublicLayout>
             <Head>
                 <title>Demo Landing Page</title>
             </Head>
-            <LandingPage />
+            <LandingPage news={news} />
         </PublicLayout>
     );
 }
 
 export async function getServerSideProps() {
     try {
-        const { data } = await sendRequest(apiConfig.news.getList, {});
-        console.log(data);
-        const posts = {};
+        const response = await axios.get(apiConfig.news.getList.baseURL);
+        let news = {};
+        if (response.data.result && response.data.data);
+        news = response.data.data;
         return {
             props: {
-                posts,
+                news,
             },
         };
     } catch (error) {

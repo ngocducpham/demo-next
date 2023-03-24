@@ -1,28 +1,25 @@
 import Head from 'next/head';
 import React from 'react';
-import { setCacheAccessToken } from '@/services/userService';
 import { showErrorMessage } from '@/services/notifyService';
-import useFetch from '@/hooks/useFetch';
-import apiConfig from '@/constants/apiConfig';
 import { useRouter } from 'next/router';
-import withAuth from '@/components/withAuth';
-import { accessRouteTypeEnum } from '@/constants';
 import Login from '@/modules/login';
 import PublicLayout from '@/components/layout/PublicLayout';
+import { getSession, signIn } from 'next-auth/react';
+import withAuth from '@/utils/withAuth';
+import { accessRouteTypeEnum } from '@/constants';
 
 function LoginPage() {
-    const { execute, loading } = useFetch(apiConfig.account.login, {});
     const router = useRouter();
 
-    const onFinish = (values) => {
-        execute({
-            data: values,
-            onCompleted: (res) => {
-                setCacheAccessToken(res.data?.token);
-                router.replace('/');
-            },
-            onError: ({ message }) => showErrorMessage(message),
+    const onFinish = async (values) => {
+        const result = await signIn('credentials', {
+            ...values,
         });
+        if (!result?.error) {
+            router.replace('/');
+        } else {
+            showErrorMessage('Login failed');
+        }
     };
 
     return (
@@ -30,9 +27,17 @@ function LoginPage() {
             <Head>
                 <title>Login</title>
             </Head>
-            <Login onFinish={onFinish} loading={loading} />
+            <Login onFinish={onFinish} />
         </PublicLayout>
     );
 }
 
-export default withAuth(LoginPage, accessRouteTypeEnum.NOT_LOGIN);
+export const getServerSideProps = withAuth(accessRouteTypeEnum.NOT_LOGIN, ({ session }) => {
+    return {
+        props: {
+            session,
+        },
+    };
+});
+
+export default LoginPage;

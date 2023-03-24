@@ -7,45 +7,43 @@ import { BsArrowRight } from 'react-icons/bs';
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { AppConstants } from '@/constants';
+import { useRouter } from 'next/router';
 
-const locationData = [
-    { id: 1, location: 'Bora Bora', isFeatured: true },
-    { id: 2, location: 'Maldives', isFeatured: true },
-    { id: 3, location: 'Cabo San Lucas', isFeatured: false },
-    { id: 4, location: 'Croatia', isFeatured: false },
-    { id: 5, location: 'Greece', isFeatured: false },
-    { id: 6, location: 'Albania', isFeatured: true },
-    { id: 7, location: 'Bora Bora', isFeatured: true },
-    { id: 8, location: 'Maldives', isFeatured: true },
-    { id: 9, location: 'Cabo San Lucas', isFeatured: false },
-];
+const myLoader = ({ src }) => {
+    return `${AppConstants.contentRootUrl}${src}`;
+};
 
-const Locations = ({ page }) => {
-    const mapData = !page ? locationData.slice(0, 6) : locationData;
+const Locations = ({ page, news }) => {
+    const mapData = news.data;
+    const router = useRouter();
+    const handleClick = (id) => {
+        router.push(`/news/${id}`);
+    };
     return (
         <div className={classes.container}>
             <div className={`${classes.locations} ${page ? classes.page : ''}`}>
                 <div className={classes.locations__content}>
                     <h2 className={classes.locations__content__title}>Discover a New</h2>
                     <div className={classes.locations__content__gallery}>
-                        {mapData.map(({ id, location, isFeatured, img }) => (
-                            <div className={classes.gallery__item} key={id}>
-                                <Image src={img} alt={location} className={classes.gallery__item__img} />
+                        {mapData.map((item, index) => (
+                            <div className={classes.gallery__item} key={index} onClick={() => handleClick(item.id)}>
+                                <Image
+                                    loader={myLoader}
+                                    src={item.avatar}
+                                    alt={item.title}
+                                    width={200}
+                                    height={150}
+                                    className={classes.gallery__item__img}
+                                />
                                 <div className={classes.overlay} />
                                 <div className={classes.gallery__item__content}>
-                                    <h2 className={classes.gallery__item__content__location}>{location}</h2>
+                                    <h2 className={classes.gallery__item__content__location}>{item.title}</h2>
                                 </div>
-                                {isFeatured && <div className={classes.gallery__item__tag}>Featured</div>}
+                                {item.pinTop > 0 && <div className={classes.gallery__item__tag}>Top</div>}
                             </div>
                         ))}
                     </div>
-                    {!page && (
-                        <div className={classes.locations__content__viewmore}>
-                            <Link href="/locations">
-                                view more <BsArrowRight />
-                            </Link>
-                        </div>
-                    )}
                 </div>
             </div>
         </div>
