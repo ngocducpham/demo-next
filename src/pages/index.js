@@ -1,8 +1,10 @@
 import { Button, DatePicker, Form, InputNumber, Select, Slider, Switch } from 'antd';
 import { SmileFilled } from '@ant-design/icons';
 import Link from 'next/link';
-import withAuth from '@/components/withAuth';
 import { accessRouteTypeEnum } from '@/constants';
+import { getSession, signOut, useSession } from 'next-auth/react';
+import apiConfig from '@/constants/apiConfig';
+import withAuth from '@/utils/withAuth';
 
 const FormItem = Form.Item;
 
@@ -68,10 +70,23 @@ function Home() {
                         <DatePicker showTime onChange={onDatePickerChange} />
                     </FormItem>
                     <FormItem style={{ marginTop: 48 }} wrapperCol={{ offset: 8 }}>
-                        <Button type="primary" htmlType="submit">
-                            OK
+                        <Button  htmlType="submit" onClick={signOut}>
+                            Sign Out
                         </Button>
-                        <Button style={{ marginLeft: 8 }}>Cancel</Button>
+                        <Button
+                            type="primary"
+                            style={{ marginLeft: 8 }}
+                            onClick={() => {
+                                fetch(`/api?url=${apiConfig.account.getProfile.baseURL}`, {
+                                    method: 'GET',
+                                    headers: apiConfig.account.getProfile.headers,
+                                })
+                                    .then((res) => res.json())
+                                    .then((data) => console.log(data));
+                            }}
+                        >
+                            Call request
+                        </Button>
                     </FormItem>
                 </Form>
             </div>
@@ -79,4 +94,12 @@ function Home() {
     );
 }
 
-export default withAuth(Home, accessRouteTypeEnum.REQUIRE_LOGIN);
+export default Home;
+
+export const getServerSideProps = withAuth(accessRouteTypeEnum.REQUIRE_LOGIN, ({ session }) => {
+    return {
+        props: {
+            session,
+        },
+    };
+});

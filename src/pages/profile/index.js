@@ -1,11 +1,17 @@
-import withAuth from '@/components/withAuth';
 import { accessRouteTypeEnum } from '@/constants';
-import useAuth from '@/hooks/useAuth';
+import withAuth from '@/utils/withAuth';
 import React from 'react';
 
 function ProfilePage() {
-    const { profile } = useAuth();
     return <div>Đay la profile {profile}</div>;
 }
 
-export default withAuth(ProfilePage, accessRouteTypeEnum.REQUIRE_LOGIN);
+export default ProfilePage;
+
+export const getServerSideProps = withAuth(accessRouteTypeEnum.REQUIRE_LOGIN, ({ session }) => {
+    return {
+        props: {
+            session,
+        },
+    };
+});
