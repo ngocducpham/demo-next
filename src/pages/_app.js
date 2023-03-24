@@ -1,6 +1,6 @@
 import LanguageProvider from '@/locales/LanguageProvider';
 import store from '@/stores';
-import '@/styles/globals.css';
+import '@/styles/index.scss';
 import { Provider } from 'react-redux';
 import 'antd/dist/reset.css';
 

@@ -1,4 +1,3 @@
-import PublicLayout from '@/modules/main/PublicLayout';
 import Head from 'next/head';
 import React from 'react';
 import { setCacheAccessToken } from '@/services/userService';
@@ -9,6 +8,7 @@ import { useRouter } from 'next/router';
 import withAuth from '@/components/withAuth';
 import { accessRouteTypeEnum } from '@/constants';
 import Login from '@/modules/login';
+import PublicLayout from '@/components/layout/PublicLayout';
 
 function LoginPage() {
     const { execute, loading } = useFetch(apiConfig.account.login, {});

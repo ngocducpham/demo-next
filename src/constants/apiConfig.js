@@ -1,4 +1,4 @@
-import { apiUrl } from ".";
+import { apiUrl } from '.';
 
 const baseHeader = {
     'Content-Type': 'application/json',
@@ -7,7 +7,6 @@ const baseHeader = {
 const multipartFormHeader = {
     'Content-Type': 'multipart/form-data',
 };
-
 
 const apiConfig = {
     account: {
@@ -41,7 +40,19 @@ const apiConfig = {
             method: 'GET',
             headers: baseHeader,
         },
-    }
+    },
+    news: {
+        getList: {
+            baseURL: `${apiUrl}v1/news/list`,
+            method: 'GET',
+            headers: baseHeader,
+        },
+        getById: {
+            baseURL: `${apiUrl}v1/news/get/:id`,
+            method: 'GET',
+            headers: baseHeader,
+        },
+    },
 };
 
 export default apiConfig;
