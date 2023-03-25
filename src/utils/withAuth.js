@@ -23,7 +23,7 @@ const withAuth = (accessType, cb) => {
             };
         }
 
-        return cb({ session, context });
+        return await cb({ session, context });
     };
 };
 
