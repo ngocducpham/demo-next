@@ -2,9 +2,6 @@ import React from 'react';
 
 import classes from './Locations.module.scss';
 
-import { IoLocationOutline } from 'react-icons/io5';
-import { BsArrowRight } from 'react-icons/bs';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { AppConstants } from '@/constants';
