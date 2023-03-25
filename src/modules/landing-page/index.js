@@ -5,7 +5,7 @@ import Locations from './Locations/Locations';
 const LandingPage = ({ news }) => {
     return (
         <Fragment>
-            <Hero />
+            {/* <Hero /> */}
             <Locations news={news} />
         </Fragment>
     );

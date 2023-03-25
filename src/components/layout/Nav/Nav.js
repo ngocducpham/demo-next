@@ -1,6 +1,6 @@
 import useAuth from '@/hooks/useAuth';
 import Button from '@/UI/Button/Button';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -9,7 +9,6 @@ import classes from './Nav.module.scss';
 const Nav = ({ isMenu, menuToggle }) => {
     // const { profile } = useAuth();
     const { data } = useSession();
-    console.log(data);
 
     return (
         <nav className={classes.nav}>
@@ -21,7 +20,7 @@ const Nav = ({ isMenu, menuToggle }) => {
                             <Link href="/profile">Hello {data.user.fullName}</Link>
                         </li>
                         <li>
-                            <Link href="/learnmore">Log out</Link>
+                            <a onClick={signOut}>Log out</a>
                         </li>
                     </>
                 ) : (
