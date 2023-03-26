@@ -24,6 +24,7 @@ export default NextAuth({
                             data: {
                                 username: credentials.username,
                                 password: credentials.password,
+                                app: 'APP_WEB_CMS'
                             },
                         }
                     );
@@ -45,7 +46,8 @@ export default NextAuth({
                         fullName: profile.data.data.fullName,
                         token: login.data.data.token,
                     };
-                } catch {
+                } catch (e) {
+                    console.log(e);
                     throw new Error('Login failed, username or password is incorrect');
                 }
             },

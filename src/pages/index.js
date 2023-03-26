@@ -5,6 +5,9 @@ import { sendRequest } from '@/services/api';
 import apiConfig from '@/constants/apiConfig';
 import axios from 'axios';
 import Landing from '@/modules/landing-page';
+import { accessRouteTypeEnum } from '@/constants';
+import withAuth from '@/utils/withAuth';
+
 function Home({ news }) {
     return (
         <PublicLayout>
@@ -16,7 +19,10 @@ function Home({ news }) {
     );
 }
 
-export async function getServerSideProps() {
+
+export default Home;
+
+export const getServerSideProps = withAuth(accessRouteTypeEnum.BOTH, async ({ session }) => {
     try {
         const response = await axios.get(apiConfig.news.getList.baseURL);
         let news = {};
@@ -25,6 +31,7 @@ export async function getServerSideProps() {
         return {
             props: {
                 news,
+                session
             },
         };
     } catch (error) {
@@ -32,9 +39,8 @@ export async function getServerSideProps() {
         return {
             props: {
                 posts: [],
+                session
             },
         };
     }
-}
-
-export default Home;
+});

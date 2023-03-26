@@ -14,6 +14,7 @@ function LoginPage() {
     const onFinish = async (values) => {
         const result = await signIn('credentials', {
             ...values,
+            redirect: false
         });
         if (!result?.error) {
             router.replace('/');

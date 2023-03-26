@@ -18,8 +18,8 @@ const Login = ({ onFinish, loading }) => {
                     name="login-form"
                     onFinish={onFinish}
                     initialValues={{
-                        username: 'cat',
-                        password: '123456',
+                        username: 'son',
+                        password: 'G8yd[f',
                     }}
                     layout="vertical"
                 >
