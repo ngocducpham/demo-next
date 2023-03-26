@@ -1,14 +1,12 @@
 import React, { Fragment } from 'react';
-import Hero from './Hero/Hero';
-import Locations from './Locations/Locations';
+import Hero from './hero/Hero';
 
-const LandingPage = ({ news }) => {
+const Landing = ({ news }) => {
     return (
         <Fragment>
             <Hero />
-            <Locations news={news} />
         </Fragment>
     );
 };
 
-export default LandingPage;
+export default Landing;

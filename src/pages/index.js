@@ -4,14 +4,14 @@ import LandingPage from '@/modules/landing-page';
 import { sendRequest } from '@/services/api';
 import apiConfig from '@/constants/apiConfig';
 import axios from 'axios';
-
+import Landing from '@/modules/landing-page';
 function Home({ news }) {
     return (
         <PublicLayout>
             <Head>
                 <title>Demo Landing Page</title>
             </Head>
-            <LandingPage news={news} />
+            <Landing news={news} />
         </PublicLayout>
     );
 }

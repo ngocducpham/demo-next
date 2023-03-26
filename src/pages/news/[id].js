@@ -1,17 +1,15 @@
 import PublicLayout from '@/components/layout/PublicLayout';
 import Head from 'next/head';
 import React from 'react';
-import NewDetailPage from '@/modules/new/NewDetailPage';
 import axios from 'axios';
 import apiConfig from '@/constants/apiConfig';
-import { AppConstants } from '@/constants';
 function NewsDetail({ news }) {
     return (
         <PublicLayout>
             <Head>
                 <title>Demo News Detail</title>
             </Head>
-            <NewDetailPage news={news} />
+            <div>Demo</div>
         </PublicLayout>
     );
 }
