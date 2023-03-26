@@ -2,19 +2,16 @@ import React, { useState } from 'react';
 import { hero } from '@/dummyData';
 import styles from './hero.module.css';
 import Card from './Card';
-const Hero = () => {
-    const [items, setIems] = useState(hero);
+const Hero = ({ news }) => {
+    console.log(news);
+    const [items, setIems] = useState(news.data || []);
 
     return (
         <>
             <section className={styles.hero}>
                 <div className={styles.container}>
-                    {items.map((item) => {
-                        return (
-                            <>
-                                <Card key={item.id} item={item} />
-                            </>
-                        );
+                    {items.map((item, index) => {
+                        return <>{index < 4 ? <Card key={item.id} item={item} /> : <></>}</>;
                     })}
                 </div>
             </section>

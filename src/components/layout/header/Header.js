@@ -16,22 +16,7 @@ const Header = () => {
                                 <Link href="/">Home</Link>
                             </li>
                             <li>
-                                <Link href="/culture">Culture</Link>
-                            </li>
-                            <li>
-                                <Link href="/politics">Politics</Link>
-                            </li>
-                            <li>
-                                <Link href="/memes">Memes</Link>
-                            </li>
-                            <li>
-                                <Link href="/sports">Sports</Link>
-                            </li>
-                            <li>
-                                <Link href="/boxed">Boxed</Link>
-                            </li>
-                            <li>
-                                <Link href="/reviews">Reviews</Link>
+                                <Link href="/profile">Profile</Link>
                             </li>
                         </ul>
                         <button className={styles.barIcon} onClick={() => setNavbar(!navbar)}>

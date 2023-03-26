@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '@/assets/images/logo.png';
-import headerb from '@/assets/images/headerb.png';
+import logo from '@/assets/images/logo-vnexpress.jpg';
+import headerb from '@/assets/images/unnamed.jpg';
 import Image from 'next/image';
 import styles from './header.module.css';
 const Head = () => {
@@ -8,11 +8,11 @@ const Head = () => {
         <>
             <section className={styles.head}>
                 <div className="container flexSB paddingTB">
-                    <div className={styles.logo}>
-                        <Image className={styles.img} src={logo} alt="" />
+                    <div className={styles.ad}>
+                        <Image className={styles.imgLogo} src={headerb} width={1000} height={1000} alt="" />
                     </div>
-                    <div className="ad">
-                        <Image src={headerb} alt="" />
+                    <div className={styles.logo}>
+                        <Image className={styles.img} width={500} src={logo} alt="" />
                     </div>
                 </div>
             </section>

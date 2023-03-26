@@ -1,7 +1,5 @@
 import PublicLayout from '@/components/layout/PublicLayout';
 import Head from 'next/head';
-import LandingPage from '@/modules/landing-page';
-import { sendRequest } from '@/services/api';
 import apiConfig from '@/constants/apiConfig';
 import axios from 'axios';
 import Landing from '@/modules/landing-page';

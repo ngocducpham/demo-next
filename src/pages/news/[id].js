@@ -3,13 +3,14 @@ import Head from 'next/head';
 import React from 'react';
 import axios from 'axios';
 import apiConfig from '@/constants/apiConfig';
-function NewsDetail({ news }) {
+import NewDetail from '@/modules/new';
+function NewsDetailPage({ news }) {
     return (
         <PublicLayout>
             <Head>
                 <title>Demo News Detail</title>
             </Head>
-            <div>Demo</div>
+            <NewDetail news={news} />
         </PublicLayout>
     );
 }
@@ -46,4 +47,4 @@ export async function getStaticProps({ params }) {
     }
 }
 
-export default NewsDetail;
+export default NewsDetailPage;

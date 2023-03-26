@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
 import Hero from './hero/Hero';
+import Homes from './mainContent/homes/Home';
 
 const Landing = ({ news }) => {
     return (
         <Fragment>
-            <Hero />
+            <Hero news={news} />
+            <Homes news={news}/>
         </Fragment>
     );
 };

@@ -2,7 +2,12 @@
     cursor: pointer;
 }
 .head .logo .img {
-    width: 500px;
+    width: 209px;
+    height: auto;
+}
+
+.head .ad .imgLogo {
+    width: 100px;
     height: auto;
 }
 .header {
