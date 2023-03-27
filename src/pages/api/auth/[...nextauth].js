@@ -24,7 +24,7 @@ export default NextAuth({
                             data: {
                                 username: credentials.username,
                                 password: credentials.password,
-                                app: 'APP_WEB_CMS'
+                                app: 'APP_WEB_CMS',
                             },
                         }
                     );
@@ -67,12 +67,14 @@ export default NextAuth({
         },
         async session({ session, token }) {
             if (token) {
-                const { email, id, avatar, fullName } = token;
+                // console.log(token);
+                const { email, id, avatar, fullName, accessToken } = token;
                 session.user = {
                     email,
                     id,
                     avatar,
                     fullName,
+                    accessToken,
                 };
             }
             return session;

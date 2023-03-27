@@ -1,23 +1,14 @@
 import PublicLayout from '@/components/layout/PublicLayout';
 import Head from 'next/head';
-import LandingPage from '@/modules/landing-page';
-import { sendRequest } from '@/services/api';
 import apiConfig from '@/constants/apiConfig';
 import axios from 'axios';
+import Landing from '@/modules/landing-page';
 import { accessRouteTypeEnum } from '@/constants';
 import withAuth from '@/utils/withAuth';
 
 function Home({ news }) {
-    return (
-        <PublicLayout>
-            <Head>
-                <title>Demo Landing Page</title>
-            </Head>
-            <LandingPage news={news} />
-        </PublicLayout>
-    );
+    return <Landing news={news} />;
 }
-
 
 export default Home;
 
@@ -30,7 +21,7 @@ export const getServerSideProps = withAuth(accessRouteTypeEnum.BOTH, async ({ se
         return {
             props: {
                 news,
-                session
+                session,
             },
         };
     } catch (error) {
@@ -38,7 +29,7 @@ export const getServerSideProps = withAuth(accessRouteTypeEnum.BOTH, async ({ se
         return {
             props: {
                 posts: [],
-                session
+                session,
             },
         };
     }

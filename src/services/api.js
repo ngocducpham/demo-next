@@ -71,15 +71,14 @@ axiosInstance.interceptors.response.use(
             }
         }
         return Promise.reject(err);
-    },
+    }
 );
 
-const sendRequest = (options, payload, cancelToken) => {
+const sendRequest = (options, payload, cancelToken, accessToken) => {
     const { params = {}, pathParams = {}, data = {} } = payload;
     let { method, baseURL, headers, ignoreAuth } = options;
-    const userAccessToken = getCacheAccessToken();
-    if (!ignoreAuth && userAccessToken) {
-        headers.Authorization = `Bearer ${userAccessToken}`;
+    if (!ignoreAuth && accessToken) {
+        headers.Authorization = `Bearer ${accessToken}`;
     }
 
     // update path params
@@ -93,12 +92,13 @@ const sendRequest = (options, payload, cancelToken) => {
     // handle multipart
     if (options.headers['Content-Type'] === 'multipart/form-data') {
         let formData = new FormData();
+        console.log(headers, options);
         Object.keys(data).map((item) => {
             formData.append(item, data[item]);
         });
 
         return axios
-            .post(options.path, formData, {
+            .post(options.baseURL, formData, {
                 headers: {
                     Authorization: headers.Authorization,
                     'Content-type': 'multipart/form-data',

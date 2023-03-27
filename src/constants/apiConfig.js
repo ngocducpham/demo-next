@@ -9,6 +9,13 @@ const multipartFormHeader = {
 };
 
 const apiConfig = {
+    file: {
+        upload: {
+            baseURL: `${apiUrl}v1/file/upload`,
+            method: 'POST',
+            headers: multipartFormHeader,
+        },
+    },
     account: {
         login: {
             baseURL: `${apiUrl}v1/account/login`,
@@ -21,7 +28,7 @@ const apiConfig = {
             headers: baseHeader,
         },
         updateProfile: {
-            baseURL: `${apiUrl}v1/account/update_profile`,
+            baseURL: `${apiUrl}v1/account/update_admin`,
             method: 'PUT',
             headers: baseHeader,
         },

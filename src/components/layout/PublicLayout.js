@@ -1,11 +1,13 @@
 import React from 'react';
-import Header from './Header';
+import Footer from './footer/Footer';
+import Header from './header/Header';
 
 function PublicLayout({ children }) {
     return (
         <>
             <Header />
             {children}
+            <Footer />
         </>
     );
 }
