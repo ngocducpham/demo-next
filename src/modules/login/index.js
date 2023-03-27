@@ -19,7 +19,7 @@ const Login = ({ onFinish, loading }) => {
                     onFinish={onFinish}
                     initialValues={{
                         username: 'son',
-                        password: 'G8yd[f',
+                        password: 'v3[rrQ',
                     }}
                     layout="vertical"
                 >
@@ -39,6 +39,7 @@ const Login = ({ onFinish, loading }) => {
                         size="large"
                         required
                         type="password"
+
                     />
 
                     <Button loading={loading} type="primary" size="large" htmlType="submit" style={{ width: '100%' }}>

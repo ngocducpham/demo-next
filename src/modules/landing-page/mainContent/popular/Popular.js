@@ -9,8 +9,10 @@ import Heading from '@/components/common/heading/Heading';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { formatDateString, imageLoader } from '@/utils';
+import { useRouter } from 'next/router';
 
 const Popular = ({ news }) => {
+    const router = useRouter();
     const settings = {
         className: 'center',
         centerMode: false,
@@ -40,7 +42,10 @@ const Popular = ({ news }) => {
                         {news.data.map((val, index) => {
                             return (
                                 <div className={styles.items} key={index}>
-                                    <div className={classNames(styles.box, 'shadow')}>
+                                    <div
+                                        onClick={() => router.push(`/news/${val.id}`)}
+                                        className={classNames(styles.box, 'shadow')}
+                                    >
                                         <div className={classNames(styles.images, 'row')}>
                                             <div className={styles.img}>
                                                 <Image width={500} height={500} src={imageLoader(val.avatar)} alt="" />
@@ -64,7 +69,6 @@ const Popular = ({ news }) => {
                                 </div>
                             );
                         })}
-                        
                     </Slider>
                 </div>
             </section>
