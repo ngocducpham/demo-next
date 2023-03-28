@@ -1,10 +1,11 @@
-const { accessRouteTypeEnum } = require('@/constants');
-const { getSession } = require('next-auth/react');
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import { getServerSession } from 'next-auth';
+import { accessRouteTypeEnum } from '@/constants';
 
 const withAuth = (accessType, cb) => {
     return async (context) => {
-        const { req } = context;
-        const session = await getSession({ req });
+        const { req, res } = context;
+        const session = await getServerSession(req, res, authOptions);
 
         if (accessType === accessRouteTypeEnum.REQUIRE_LOGIN && !session) {
             return {
@@ -23,7 +24,13 @@ const withAuth = (accessType, cb) => {
             };
         }
 
-        return await cb({ session, context });
+        if (cb) {
+            return await cb({ session, context });
+        }
+
+        return {
+            props: {},
+        };
     };
 };
 

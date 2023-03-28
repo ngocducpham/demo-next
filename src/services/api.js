@@ -2,6 +2,7 @@ import { storageKeys } from '@/constants';
 import apiConfig from '@/constants/apiConfig';
 import { removeItem } from '@/utils/localStorage';
 import axios from 'axios';
+import { signOut } from 'next-auth/react';
 import {
     getCacheAccessToken,
     getCacheUserEmail,
@@ -74,11 +75,15 @@ axiosInstance.interceptors.response.use(
     }
 );
 
-const sendRequest = (options, payload, cancelToken, accessToken) => {
+const sendRequest = async (options, payload, cancelToken, session) => {
     const { params = {}, pathParams = {}, data = {} } = payload;
     let { method, baseURL, headers, ignoreAuth } = options;
-    if (!ignoreAuth && accessToken) {
-        headers.Authorization = `Bearer ${accessToken}`;
+    
+    if(session?.error === "RefreshAccessTokenError" ){
+        await signOut();
+    }
+    if (!ignoreAuth && session?.accessToken) {
+        headers.Authorization = `Bearer ${session.accessToken}`;
     }
 
     // update path params

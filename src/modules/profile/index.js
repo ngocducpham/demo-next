@@ -23,7 +23,7 @@ const Profile = ({ data }) => {
                 },
             },
             null,
-            session.user.accessToken
+            session
         );
         if (res.data.result) {
             showSucsessMessage(res.data.message);
@@ -44,7 +44,7 @@ const Profile = ({ data }) => {
                 },
             },
             null,
-            session.user.accessToken
+            session
         );
         if (res.data.result) {
             setAvatar(res.data.data.filePath);

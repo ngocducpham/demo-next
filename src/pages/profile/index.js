@@ -23,16 +23,7 @@ export const getServerSideProps = withAuth(accessRouteTypeEnum.REQUIRE_LOGIN, as
     try {
         // lấy dữ liệu của tin tức có slug là params.slug
 
-        const res = await sendRequest(
-            {
-                ...apiConfig.account.getProfile,
-                ignoreAuth: true,
-                headers: {
-                    Authorization: `Bearer ${session.user.accessToken}`,
-                },
-            },
-            {}
-        );
+        const res = await sendRequest(apiConfig.account.getProfile, {}, null, session);
         let profile = {};
         if (res.data.result && res.data.data) profile = res.data.data;
         return {

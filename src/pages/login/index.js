@@ -33,12 +33,6 @@ function LoginPage() {
     );
 }
 
-export const getServerSideProps = withAuth(accessRouteTypeEnum.NOT_LOGIN, ({ session }) => {
-    return {
-        props: {
-            session,
-        },
-    };
-});
+export const getServerSideProps = withAuth(accessRouteTypeEnum.NOT_LOGIN);
 
 export default LoginPage;

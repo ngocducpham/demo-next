@@ -12,7 +12,7 @@ function Home({ news }) {
 
 export default Home;
 
-export const getServerSideProps = withAuth(accessRouteTypeEnum.BOTH, async ({ session }) => {
+export const getServerSideProps = withAuth(accessRouteTypeEnum.BOTH, async () => {
     try {
         const response = await axios.get(apiConfig.news.getList.baseURL);
         let news = {};
@@ -21,7 +21,6 @@ export const getServerSideProps = withAuth(accessRouteTypeEnum.BOTH, async ({ se
         return {
             props: {
                 news,
-                session,
             },
         };
     } catch (error) {
@@ -29,7 +28,6 @@ export const getServerSideProps = withAuth(accessRouteTypeEnum.BOTH, async ({ se
         return {
             props: {
                 posts: [],
-                session,
             },
         };
     }
