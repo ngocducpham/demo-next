@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './index.module.css';
 
 import Slider from 'react-slick';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import Heading from '@/components/common/heading/Heading';
 import classNames from 'classnames';
 import Image from 'next/image';
