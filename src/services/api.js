@@ -30,45 +30,8 @@ axiosInstance.interceptors.response.use(
         const originalConfig = err.config;
 
         if (originalConfig.url !== apiConfig.account.login.baseURL && err.response) {
-            // Access Token was expired
-            if (err.response?.status === 401 && !originalConfig._retry) {
-                const handleExpireAll = () => {
-                    removeCacheToken();
-                    window.location.reload();
-                };
-
-                if (!getCacheRefreshToken()) {
-                    handleExpireAll();
-                }
-
-                originalConfig._retry = true;
-                if (!isRefreshing) {
-                    isRefreshing = true;
-                    const email = getCacheUserEmail();
-                    axiosInstance
-                        .post(apiConfig.account.refreshToken.baseURL, {
-                            refreshToken: getCacheRefreshToken(),
-                            email,
-                        })
-                        .then((rs) => {
-                            const { accessToken, refreshToken } = rs.data.data;
-                            setCacheToken(accessToken, refreshToken);
-                            isRefreshing = false;
-                            onRefreshed(accessToken);
-                            subscribers = [];
-                        })
-                        .catch((_error) => {
-                            handleExpireAll();
-                            return Promise.reject(_error);
-                        });
-                }
-
-                return new Promise((resolve) => {
-                    subscribeTokenRefresh((newAccessToken) => {
-                        originalConfig.headers.Authorization = `Bearer ${newAccessToken}`;
-                        return resolve(axiosInstance(originalConfig));
-                    });
-                });
+            if (err.response?.status === 401) {
+                await signOut();
             }
         }
         return Promise.reject(err);
@@ -97,7 +60,6 @@ const sendRequest = async (options, payload, cancelToken, session) => {
     // handle multipart
     if (options.headers['Content-Type'] === 'multipart/form-data') {
         let formData = new FormData();
-        console.log(headers, options);
         Object.keys(data).map((item) => {
             formData.append(item, data[item]);
         });

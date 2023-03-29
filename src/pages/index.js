@@ -12,23 +12,26 @@ function Home({ news }) {
 
 export default Home;
 
-export const getServerSideProps = withAuth(accessRouteTypeEnum.BOTH, async () => {
-    try {
-        const response = await axios.get(apiConfig.news.getList.baseURL);
-        let news = {};
-        if (response.data.result && response.data.data);
-        news = response.data.data;
-        return {
-            props: {
-                news,
-            },
-        };
-    } catch (error) {
-        console.error(error);
-        return {
-            props: {
-                posts: [],
-            },
-        };
-    }
-});
+export const getServerSideProps = withAuth(
+    accessRouteTypeEnum.BOTH,
+    async () => {
+        try {
+            const response = await axios.get(apiConfig.news.getList.baseURL);
+            let news = {};
+            if (response.data.result && response.data.data);
+            news = response.data.data;
+            return {
+                props: {
+                    news,
+                },
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                props: {
+                    posts: [],
+                },
+            };
+        }
+    },
+);

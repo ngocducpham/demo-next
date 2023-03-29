@@ -7,7 +7,6 @@ import { showSucsessMessage } from '@/services/notifyService';
 const Header = () => {
     const [navbar, setNavbar] = useState(false);
     const session = useSession();
-    console.log('session', session);
 
     return (
         <>

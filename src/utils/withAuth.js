@@ -7,7 +7,7 @@ const withAuth = (accessType, cb) => {
         const { req, res } = context;
         const session = await getServerSession(req, res, authOptions);
 
-        if (accessType === accessRouteTypeEnum.REQUIRE_LOGIN && !session) {
+        if (accessType === accessRouteTypeEnum.REQUIRE_LOGIN && (!session || session.error == "RefreshAccessTokenError")) {
             return {
                 redirect: {
                     destination: '/login',
@@ -15,7 +15,7 @@ const withAuth = (accessType, cb) => {
                 },
             };
         }
-        if (accessType === accessRouteTypeEnum.NOT_LOGIN && session) {
+        if (accessType === accessRouteTypeEnum.NOT_LOGIN && session && session.error != "RefreshAccessTokenError") {
             return {
                 redirect: {
                     destination: '/',

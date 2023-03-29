@@ -12,6 +12,7 @@ async function refreshAccessToken(tokenObject) {
         return {
             ...tokenObject,
             accessToken: response.data.data.token,
+            accessTokenExpires: response.data.data.tokenExpires,
             refreshToken: response.data.data.refreshToken,
         };
     } catch (e) {
@@ -30,19 +31,27 @@ export const authOptions = {
         CredentialsProvider({
             async authorize(credentials) {
                 try {
-                    const login = await sendRequest(apiConfig.account.login, {
-                        data: {
-                            username: credentials.username,
-                            password: credentials.password,
-                            app: 'APP_WEB_CMS',
+                    const { data: login } = await sendRequest(
+                        apiConfig.account.login,
+                        {
+                            data: {
+                                username: credentials.username,
+                                password: credentials.password,
+                                app: 'APP_WEB_CMS',
+                            },
                         },
-                    });
+                    );
 
-                    const accessToken = login.data.data.token;
+                    const { token: accessToken } = login.data;
 
-                    const profile = await sendRequest(apiConfig.account.getProfile, {}, null, { accessToken });
+                    const { data: profile } = await sendRequest(
+                        apiConfig.account.getProfile,
+                        {},
+                        null,
+                        { accessToken },
+                    );
 
-                    const { email, id, avatar, fullName } = profile.data.data;
+                    const { email, id, avatar, fullName } = profile.data;
 
                     return {
                         email,
@@ -69,12 +78,29 @@ export const authOptions = {
                 token.fullName = user.fullName;
             }
 
+            try {
+                await sendRequest(
+                    apiConfig.account.getProfile,
+                    {},
+                    null,
+                    { accessToken: token.accessToken },
+                );
+            } catch (e) {
+                return {
+                    ...token,
+                    error: 'RefreshAccessTokenError',
+                }
+            }
+
             if (token.refreshToken) {
                 // we need to refresh the access token after accessTokenExpires - 1 hour
-                const shouldRefreshAccessToken = Math.round(token.accessTokenExpires - 60 * 60 * 1000 - Date.now()) < 0;
+                const shouldRefreshAccessToken =
+                    Math.round(
+                        token.accessTokenExpires - 60 * 60 * 1000 - Date.now(),
+                    ) < 0;
 
                 if (shouldRefreshAccessToken) {
-                    return refreshAccessToken(token);
+                    return await refreshAccessToken(token);
                 }
             }
 
@@ -82,15 +108,17 @@ export const authOptions = {
         },
         async session({ session, token }) {
             if (token) {
-                const { email, id, avatar, fullName, accessToken, accessTokenExpires } = token;
+                const { email, id, avatar, fullName, accessToken, error } =
+                    token;
                 session.user = {
                     email,
                     id,
                     avatar,
                     fullName,
-                    accessToken,
-                    accessTokenExpires,
                 };
+                session.accessToken = accessToken;
+
+                if (error) session.error = error;
             }
             return session;
         },

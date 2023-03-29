@@ -14,6 +14,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
         // refetch session 30 minutes before it expires
         const timeRemaining = Math.round(session.accessTokenExpires - 30 * 60 * 1000 - Date.now()) / 1000;
+        console.log('timeRemaining', timeRemaining);
         return timeRemaining > 0 ? timeRemaining : 0;
     }, [session]);
 
