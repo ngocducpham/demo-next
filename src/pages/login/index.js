@@ -1,20 +1,22 @@
-import Head from 'next/head';
 import React from 'react';
 import { showErrorMessage } from '@/services/notifyService';
 import { useRouter } from 'next/router';
-import Login from '@/modules/login';
+import Login from '@/components/desktop/login';
 import PublicLayout from '@/components/layout/PublicLayout';
 import { getSession, signIn } from 'next-auth/react';
 import withAuth from '@/utils/withAuth';
 import { accessRouteTypeEnum } from '@/constants';
+import RenderContext from '@/components/common/RenderContext';
+import { deviceDetect } from '@/utils';
+import LoginMobile from '@/components/mobile/login';
 
-function LoginPage() {
+function LoginPage(props) {
     const router = useRouter();
 
     const onFinish = async (values) => {
         const result = await signIn('credentials', {
             ...values,
-            redirect: false
+            redirect: false,
         });
         if (!result?.error) {
             router.replace('/');
@@ -24,19 +26,25 @@ function LoginPage() {
     };
 
     return (
-        <PublicLayout>
-            <Head>
-                <title>Login</title>
-            </Head>
-            <Login onFinish={onFinish} />
-        </PublicLayout>
+        <RenderContext
+            mobile={{ device: LoginMobile }}
+            desktop={{ device: Login }}
+            onFinish={onFinish}
+            title='Login Page'
+            {...props}
+        />
     );
 }
 
-export const getServerSideProps = withAuth(accessRouteTypeEnum.NOT_LOGIN, ({ session }) => {
+LoginPage.getLayout = function getLayout(page) {
+    return <PublicLayout>{page}</PublicLayout>;
+};
+
+export const getServerSideProps = withAuth(accessRouteTypeEnum.NOT_LOGIN, ({ session, context }) => {
+    const isMobile = deviceDetect(context);
     return {
         props: {
-            session,
+            initDevice: isMobile,
         },
     };
 });

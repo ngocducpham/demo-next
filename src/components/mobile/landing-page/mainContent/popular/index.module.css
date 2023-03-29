@@ -1,0 +1,42 @@
+.popular .box {
+    background-color: #fff;
+    display: flex;
+    position: relative;
+    margin: 0.9375rem 0.9375rem 0.9375rem 0;
+}
+.popular .images {
+    position: relative;
+    height: 9.375rem;
+}
+.popular img {
+    width: 100%;
+    height: 9.375rem;
+    object-fit: cover;
+}
+.popular .text h1 {
+    padding: 1.25rem 0 0 1.25rem;
+    margin: 0;
+}
+.popular .date {
+    margin-top: 0.9375rem;
+    padding: 0 0 0 1.25rem;
+}
+
+.popular .comment {
+    border-top: 0.0625rem solid rgba(0, 0, 0, 0.1);
+    padding: 0.3125rem 0 0 1.25rem;
+    margin-top: 0.3125rem;
+}
+
+.comment i,
+.date i {
+    width: 1.875rem;
+    color: #fb4c35;
+    font-size: 0.8125rem;
+}
+
+.comment label,
+.date label {
+    font-size: 0.8125rem;
+    color: #868585;
+}

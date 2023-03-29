@@ -1,0 +1,125 @@
+.main {
+    margin-top: 3.125rem;
+}
+
+.container {
+    max-width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainContent {
+    width: 75%;
+}
+.sideContent {
+    width: 23%;
+}
+
+.details {
+    padding-right: 3.125rem;
+}
+.details .title {
+    font-size: 2.5rem;
+    line-height: 3.75rem;
+    font-weight: 700;
+}
+.details .author {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin: 1.25rem 0;
+}
+.details .author p {
+    text-transform: capitalize;
+    margin-right: 0.625rem;
+}
+.details .author img {
+    width: 3.125rem;
+    height: 3.125rem;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 0.625rem;
+}
+.details .author label {
+    color: grey;
+}
+.details .social {
+    display: flex;
+    margin-bottom: 1.25rem;
+}
+.details .social .socBox {
+    margin-right: 1.25rem;
+}
+.details img {
+    margin: 1.875rem 0;
+}
+.desctop p {
+    margin: 1.25rem 0;
+    line-height: 1.875rem;
+}
+.descbot h1 {
+    font-weight: 600;
+    font-size: 1.875rem;
+    margin-top: 1.875rem;
+}
+.quote {
+    padding-left: 3.125rem;
+    border-left: 0.3125rem solid red;
+}
+.quote i {
+    font-size: 3.125rem;
+    color: red;
+    margin-bottom: 1.25rem;
+}
+.quote p {
+    font-size: 1.125rem;
+}
+
+.social .socBox {
+    padding: 0.625rem 1.25rem;
+    margin-bottom: 0.625rem;
+    color: #fff;
+}
+.social .socBox i {
+    margin-right: 1.25rem;
+}
+.social .socBox span {
+    font-weight: 500;
+}
+.social .socBox:nth-child(1) {
+    background-color: #3b5998;
+}
+.social .socBox:nth-child(2) {
+    background-color: #bd081c;
+}
+.social .socBox:nth-child(3) {
+    background-color: #1da1f2;
+}
+.social .socBox:nth-child(4) {
+    background-color: #c32aa3;
+}
+.social .socBox:nth-child(5) {
+    background-color: #ff0000;
+}
+
+.content {
+    font-size: 1.5rem;
+}
+@media screen and (max-width: 820px) {
+    .container {
+        flex-direction: column;
+    }
+    .mainContent {
+        width: 100%;
+    }
+    .sideContent {
+        width: 100%;
+    }
+    .details {
+        padding-right: 0;
+    }
+    .details img {
+        width: 100%;
+    }
+}

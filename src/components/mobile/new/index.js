@@ -3,7 +3,7 @@ import { formatDateString } from '@/utils';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.css';
-const NewDetail = ({ news }) => {
+const NewDetailMobile = ({ news }) => {
     return (
         <main className={styles.main}>
             <div className={styles.container}>
@@ -13,7 +13,7 @@ const NewDetail = ({ news }) => {
                     <div className={styles.author}>
                         <span style={{ marginRight: '10px' }}>by {news.createdBy} on </span>
                         {/* <img src={news.authorImg} alt="" /> */}
-                        <label>{formatDateString(news.time)}</label>
+                        <label>{formatDateString(news.createdDate) || ''}</label>
                     </div>
 
                     <div className={styles.social}>
@@ -42,4 +42,4 @@ const NewDetail = ({ news }) => {
     );
 };
 
-export default NewDetail;
+export default NewDetailMobile;

@@ -59,11 +59,11 @@ const Profile = ({ data }) => {
                 initialValues={profile}
                 layout="vertical"
                 // onValuesChange={this.onValuesChange}
-                style={{ width: '400px' }}
+                style={{ width: '400px', marginTop: '2rem' }}
             >
-                <Card title="Profile" bordered={false}>
-                    <Row gutter={[16, 0]}>
-                        <Col span={22}>
+                <Card className="" bordered={false}>
+                    <Row gutter={[16, 0]} justify="center">
+                        <Col span={6}>
                             <CropImageField
                                 loading={loading}
                                 uploadFile={handleUpload}
@@ -73,30 +73,41 @@ const Profile = ({ data }) => {
                             />
                         </Col>
                     </Row>
-                    <Col span={22}>
-                        <InputTextField name="email" label="Email" />
-                    </Col>
-                    <Col span={22}>
-                        <InputTextField name="username" label="User Name" />
-                    </Col>
-                    <Col span={22}>
-                        <InputTextField name="phone" label="Phone" />
-                    </Col>
-                    <Col span={22}>
-                        <InputTextField name="fullName" label="Full Name" required />
-                    </Col>
-                    <Col span={22}>
-                        <Button
-                            // loading={loading}
-                            // className="profile-form-button"
-                            type="primary"
-                            htmlType="submit"
-                            style={{ width: '100%' }}
-                            // icon={<SaveOutlined />}
-                        >
-                            Save
-                        </Button>
-                    </Col>
+                    <Row justify="center">
+                        <Col span={22}>
+                            <InputTextField name="email" label="Email" />
+                        </Col>
+                    </Row>
+
+                    <Row justify="center">
+                        <Col span={22}>
+                            <InputTextField name="username" label="User Name" />
+                        </Col>
+                    </Row>
+                    <Row justify="center">
+                        <Col span={22}>
+                            <InputTextField name="phone" label="Phone" />
+                        </Col>
+                    </Row>
+                    <Row justify="center">
+                        <Col span={22}>
+                            <InputTextField name="fullName" label="Full Name" required />
+                        </Col>
+                    </Row>
+                    <Row justify="center">
+                        <Col span={22}>
+                            <Button
+                                // loading={loading}
+                                // className="profile-form-button"
+                                type="primary"
+                                htmlType="submit"
+                                style={{ width: '100%' }}
+                                // icon={<SaveOutlined />}
+                            >
+                                Save
+                            </Button>
+                        </Col>
+                    </Row>
                 </Card>
             </Form>
         </section>

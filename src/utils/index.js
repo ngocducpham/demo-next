@@ -2,7 +2,7 @@
 import { DATE_DISPLAY_FORMAT } from '@/constants';
 import dayjs from 'dayjs';
 import { AppConstants } from '@/constants';
-
+import UAParser from 'ua-parser-js';
 // export const convertGlobImportToObject = (modules) =>
 //     modules
 //         .filter((module) => !!module.default)
@@ -115,4 +115,12 @@ export const formatDateString = (dateString, formatDate = DATE_DISPLAY_FORMAT) =
 
 export const imageLoader = (src) => {
     return `${AppConstants.contentRootUrl}${src}`;
+};
+
+export const deviceDetect = (context) => {
+    const { req } = context;
+    const parser = new UAParser();
+    const userAgent = req.headers['user-agent'];
+    const result = parser.setUA(userAgent).getResult();
+    return !!result.device.type;
 };
