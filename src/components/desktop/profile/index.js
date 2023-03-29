@@ -5,9 +5,11 @@ import CropImageField from '@/components/common/CropImageField';
 import apiConfig from '@/constants/apiConfig';
 import { sendRequest } from '@/services/api';
 import { showErrorMessage, showSucsessMessage } from '@/services/notifyService';
+import { useSession } from 'next-auth/react';
 const Profile = ({ data }) => {
-    const { profile, session } = data;
+    const { profile } = data;
     const [loading, setLoading] = useState(false);
+    const session = useSession();
     const [avatar, setAvatar] = useState(profile.avatar || '');
     const handleSubmit = async (values) => {
         const res = await sendRequest(
@@ -23,7 +25,7 @@ const Profile = ({ data }) => {
                 },
             },
             null,
-            session.user.accessToken
+            session.data.user.accessToken
         );
         if (res.data.result) {
             showSucsessMessage(res.data.message);
@@ -44,7 +46,7 @@ const Profile = ({ data }) => {
                 },
             },
             null,
-            session.user.accessToken
+            session.data.user.accessToken
         );
         if (res.data.result) {
             setAvatar(res.data.data.filePath);

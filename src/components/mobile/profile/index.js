@@ -6,8 +6,10 @@ import apiConfig from '@/constants/apiConfig';
 import { sendRequest } from '@/services/api';
 import { showErrorMessage, showSucsessMessage } from '@/services/notifyService';
 import styles from './index.module.scss';
+import { useSession } from 'next-auth/react';
 const ProfileMobile = ({ data }) => {
-    const { profile, session } = data;
+    const { profile } = data;
+    const session = useSession();
     const [loading, setLoading] = useState(false);
     const [avatar, setAvatar] = useState(profile.avatar || '');
     const handleSubmit = async (values) => {
@@ -24,7 +26,7 @@ const ProfileMobile = ({ data }) => {
                 },
             },
             null,
-            session.user.accessToken
+            session.data.user.accessToken
         );
         if (res.data.result) {
             showSucsessMessage(res.data.message);
@@ -45,7 +47,7 @@ const ProfileMobile = ({ data }) => {
                 },
             },
             null,
-            session.user.accessToken
+            session.data.user.accessToken
         );
         if (res.data.result) {
             setAvatar(res.data.data.filePath);
@@ -60,57 +62,54 @@ const ProfileMobile = ({ data }) => {
                 initialValues={profile}
                 layout="vertical"
                 // onValuesChange={this.onValuesChange}
-                style={{ width: '25rem', marginTop: '2rem' }}
+                style={{ width: '30rem', marginTop: '2rem' }}
                 className={styles.form}
             >
-                <Card className="" bordered={false}>
                     <Row gutter={[16, 0]} justify="center">
-                        <Col span={6}>
+                        <Col span={4}>
                             <CropImageField
                                 loading={loading}
                                 uploadFile={handleUpload}
                                 name="avatar"
-                                label="Avatar"
                                 imageUrl={avatar}
                             />
                         </Col>
                     </Row>
                     <Row justify="center">
                         <Col span={22}>
-                            <InputTextField name="email" label="Email" />
+                            <InputTextField size='large' name="email" label="Email" />
                         </Col>
                     </Row>
 
                     <Row justify="center">
                         <Col span={22}>
-                            <InputTextField name="username" label="User Name" />
+                            <InputTextField  size='large' name="username" label="User Name" />
                         </Col>
                     </Row>
                     <Row justify="center">
                         <Col span={22}>
-                            <InputTextField name="phone" label="Phone" />
+                            <InputTextField  size='large' name="phone" label="Phone" />
                         </Col>
                     </Row>
                     <Row justify="center">
                         <Col span={22}>
-                            <InputTextField name="fullName" label="Full Name" required />
+                            <InputTextField  size='large' name="fullName" label="Full Name" required />
                         </Col>
                     </Row>
                     <Row justify="center">
                         <Col span={22}>
                             <Button
                                 // loading={loading}
-                                // className="profile-form-button"
+                                className="profile-form-button"
                                 type="primary"
                                 htmlType="submit"
-                                style={{ width: '100%' }}
+                                style={{ width: '100%', height:'3rem', fontSize:'1.5rem' }}
                                 // icon={<SaveOutlined />}
                             >
                                 Save
                             </Button>
                         </Col>
                     </Row>
-                </Card>
             </Form>
         </section>
     );

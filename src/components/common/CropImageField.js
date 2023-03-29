@@ -35,7 +35,7 @@ function CropImageField({
 
     const getContent = () => {
         if (imageUrl && !loading) {
-            return <Image className="img-uploaded" width={75} height={75} src={imageLoader(imageUrl)} alt="field-upload" />;
+            return <Image className="img-uploaded" width={180} height={180} src={imageLoader(imageUrl)} alt="field-upload" />;
         } else if (showUploadList && fileList && fileList.length === maxFile) {
             return null;
         } else {
