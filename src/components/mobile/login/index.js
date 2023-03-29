@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'antd';
+import { Button, Col, Form, Row } from 'antd';
 
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
@@ -24,35 +24,43 @@ const LoginMobile = ({ onFinish, loading }) => {
                     }}
                     layout="vertical"
                 >
-                    <InputTextField
-                        name="username"
-                        inputProps={{
-                            prefix: <UserOutlined />,
-                            style: {
-                                height: '80px',
-                                fontSize: '32px',
-                            },
-                        }}
-                        // label={intl.formatMessage(message.username)}
-                        placeholder="Username"
-                        size="large"
-                        required
-                    />
-                    <InputTextField
-                        name="password"
-                        inputProps={{
-                            prefix: <LockOutlined />,
-                            style: {
-                                height: '80px',
-                                fontSize: '32px',
-                            },
-                        }}
-                        // label={intl.formatMessage(message.password)}
-                        placeholder="Password"
-                        size="large"
-                        required
-                        type="password"
-                    />
+                    <Row style={{ marginBottom: 25 }}>
+                        <Col span={24}>
+                            <InputTextField
+                                name="username"
+                                inputProps={{
+                                    prefix: <UserOutlined />,
+                                    style: {
+                                        height: '80px',
+                                        fontSize: '32px',
+                                    },
+                                }}
+                                // label={intl.formatMessage(message.username)}
+                                placeholder="Username"
+                                size="large"
+                                required
+                            />
+                        </Col>
+                    </Row>
+                    <Row style={{ marginBottom: 35 }}>
+                        <Col span={24}>
+                            <InputTextField
+                                name="password"
+                                inputProps={{
+                                    prefix: <LockOutlined />,
+                                    style: {
+                                        height: '80px',
+                                        fontSize: '32px',
+                                    },
+                                }}
+                                // label={intl.formatMessage(message.password)}
+                                placeholder="Password"
+                                size="large"
+                                required
+                                type="password"
+                            />
+                        </Col>
+                    </Row>
 
                     <Button
                         loading={loading}
