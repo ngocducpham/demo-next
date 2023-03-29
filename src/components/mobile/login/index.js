@@ -7,13 +7,14 @@ import styles from './index.module.scss';
 import InputTextField from '@/components/common/InputTextField';
 import { brandName } from '@/constants';
 import { Typography } from 'antd';
+import classNames from 'classnames';
 const { Title } = Typography;
 
 const LoginMobile = ({ onFinish, loading }) => {
     return (
         <div className={styles.loginPage}>
-            <div className={styles.loginForm}>
-                <Title level={3}>LOGIN</Title>
+            <div className={classNames(styles.loginForm, 'loginForm')}>
+                <Title level={1}>LOGIN</Title>
                 <Form
                     name="login-form"
                     onFinish={onFinish}
@@ -25,7 +26,13 @@ const LoginMobile = ({ onFinish, loading }) => {
                 >
                     <InputTextField
                         name="username"
-                        inputProps={{ prefix: <UserOutlined /> }}
+                        inputProps={{
+                            prefix: <UserOutlined />,
+                            style: {
+                                height: '80px',
+                                fontSize: '32px',
+                            },
+                        }}
                         // label={intl.formatMessage(message.username)}
                         placeholder="Username"
                         size="large"
@@ -33,23 +40,29 @@ const LoginMobile = ({ onFinish, loading }) => {
                     />
                     <InputTextField
                         name="password"
-                        inputProps={{ prefix: <LockOutlined /> }}
+                        inputProps={{
+                            prefix: <LockOutlined />,
+                            style: {
+                                height: '80px',
+                                fontSize: '32px',
+                            },
+                        }}
                         // label={intl.formatMessage(message.password)}
                         placeholder="Password"
                         size="large"
                         required
                         type="password"
-
                     />
 
-                    <Button loading={loading} type="primary" size="large" htmlType="submit" style={{ width: '100%' }}>
+                    <Button
+                        loading={loading}
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        style={{ width: '100%', height: 80, fontSize: 32, backgroundColor: '#9f224e' }}
+                    >
                         Login
                     </Button>
-                    <center className="s-mt4px">
-                        <small>
-                            {brandName} - © Copyright {new Date().getFullYear()}. All Rights Reserved
-                        </small>
-                    </center>
                 </Form>
             </div>
         </div>

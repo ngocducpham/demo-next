@@ -128,4 +128,8 @@ a {
     box-shadow: rgba(0, 0, 0, 0.2) 0rem 0.9375rem 0.625rem -0.625rem;
 }
 
+.loginForm .ant-form-item-explain-error{
+    font-size: 28px !important;
+}
+
 /*-----------global-----------*/
