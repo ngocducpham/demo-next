@@ -28,7 +28,7 @@ const useFetch = (apiConfig, {
         } finally {
             setLoading(false);
         }
-    }, [apiConfig, mappingData]);
+    }, [ apiConfig, mappingData ]);
 
     useEffect(() => {
         if (immediate) {

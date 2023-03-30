@@ -1,28 +1,17 @@
-import { useEffect, useState } from 'react';
-const calcDevices = (width) => {
-    const isMobile = width < 768;
-    const isDesktop = !isMobile;
-    return { isMobile, isDesktop };
-};
+import { useEffect, useState } from "react";
+import UAParser from "ua-parser-js";
 
 const useDevices = () => {
-    const [devices, setDevices] = useState({ isMobile: null, isDesktop: null });
-
-    const handleResize = (e) => {
-        setDevices(calcDevices(e.target.innerWidth));
-    };
-    useEffect(() => {
-        setDevices(calcDevices(window.innerWidth));
-    }, []);
+    const [ isMobile, setIsMobile ] = useState(false);
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
+        const parser = new UAParser();
+        const result = parser.getResult();
+
+        setIsMobile(result.device.type === "mobile");
     }, []);
 
-    return devices;
+    return isMobile;
 };
 
 export default useDevices;

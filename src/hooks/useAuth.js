@@ -28,7 +28,7 @@ function useAuth() {
                 },
             });
         }
-    }, [dispatch, execute, profile, token]);
+    }, [ dispatch, execute, profile, token ]);
 
     return { profile, loading: loading, isAuthenticated: !!profile, token };
 }

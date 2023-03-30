@@ -4,7 +4,6 @@ import styles from './index.module.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { popular } from '../../../../dummyData';
 import Heading from '@/components/common/heading/Heading';
 import classNames from 'classnames';
 import Image from 'next/image';
@@ -50,18 +49,18 @@ const Popular = ({ news }) => {
                                             <div className={styles.img}>
                                                 <Image width={500} height={500} src={imageLoader(val.avatar)} alt="" />
                                             </div>
-                                            <div class="category category1">
+                                            <div className="category category1">
                                                 <span>{val.description}</span>
                                             </div>
                                         </div>
                                         <div className={classNames(styles.text, 'row')}>
                                             <h1 className="title">{val.title.slice(0, 40)}...</h1>
                                             <div className={styles.date}>
-                                                <i class="fas fa-calendar-days"></i>
+                                                <i className="fas fa-calendar-days"></i>
                                                 <label>{formatDateString(val.time)}</label>
                                             </div>
                                             <div className={styles.comment}>
-                                                <i class="fas fa-comments"></i>
+                                                <i className="fas fa-comments"></i>
                                                 <label>{0}</label>
                                             </div>
                                         </div>

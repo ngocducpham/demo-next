@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Form } from 'antd';
 const useBasicForm = ({ onSubmit, setIsChangedFormValues, onResetForm, override, otherData } = {}) => {
-    const [form] = Form.useForm();
+    const [ form ] = Form.useForm();
     const getFieldValue = (fieldName) => {
         if (form) return form.getFieldValue(fieldName);
         return '';

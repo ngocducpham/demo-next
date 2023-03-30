@@ -1,5 +1,5 @@
 .hero {
-    margin: 30px 0;
+    margin: 1.875rem 0;
     color: #fff;
 }
 .hero a {
@@ -7,7 +7,7 @@
 }
 .hero .box {
     position: relative;
-    padding: 30px;
+    padding: 1.875rem;
 }
 .hero img {
     width: 100%;
@@ -22,7 +22,7 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 6.6vh);
-    grid-gap: 10px;
+    grid-gap: 0.625rem;
     max-width: 90%;
     margin: auto;
 }
@@ -52,22 +52,22 @@
 }
 .hero .text h1 {
     font-weight: 500;
-    margin: 10px 0;
-    font-size: 15px;
+    margin: 0.625rem 0;
+    font-size: 1.3rem;
 }
 .hero .author span {
-    font-size: 14px;
-    margin-right: 20px;
+    font-size: 0.875rem;
+    margin-right: 1.25rem;
 }
 .hero .text {
     position: absolute;
-    bottom: 30px;
+    bottom: 1.875rem;
 }
 .hero .box:nth-child(1) h1 {
-    font-size: 28px;
+    font-size: 1.25rem;
 }
 .hero .box .category {
-    padding: 3px;
+    padding: 0.1875rem;
 }
 .hero .box:nth-child(1) .category {
     background-color: crimson;
@@ -78,12 +78,12 @@
 .hero .box:nth-child(4) .category {
     background-color: #c78823;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 820px) {
     .hero .container {
         display: grid;
         grid-template-columns: repeat(8, 1fr);
         grid-template-rows: repeat(18, 6vh);
-        grid-gap: 10px;
+        grid-gap: 0.625rem;
     }
     .hero .box:nth-child(1) {
         grid-column-start: 1;

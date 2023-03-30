@@ -1,19 +1,24 @@
-import PublicLayout from '@/components/layout/PublicLayout';
-import Head from 'next/head';
 import React from 'react';
 import axios from 'axios';
 import apiConfig from '@/constants/apiConfig';
-import NewDetail from '@/modules/new';
-function NewsDetailPage({ news }) {
+import NewDetail from '@/components/desktop/new';
+import RenderContext from '@/components/common/RenderContext';
+import PublicLayout from '@/components/layout/PublicLayout';
+import NewDetailMobile from '@/components/mobile/new';
+function NewsDetailPage({ ...props }) {
     return (
-        <PublicLayout>
-            <Head>
-                <title>Demo News Detail</title>
-            </Head>
-            <NewDetail news={news} />
-        </PublicLayout>
+        <RenderContext
+            title="New Detail"
+            mobile={{ device: NewDetailMobile }}
+            desktop={{ device: NewDetail }}
+            {...props}
+        />
     );
 }
+
+NewsDetailPage.getLayout = function getLayout(page) {
+    return <PublicLayout>{page}</PublicLayout>;
+};
 
 export async function getStaticPaths() {
     // lấy danh sách các tin tức
@@ -26,7 +31,8 @@ export async function getStaticPaths() {
     return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps(context) {
+    const { params } = context;
     try {
         // lấy dữ liệu của tin tức có slug là params.slug
         const response = await axios.get(`${apiConfig.news.getById.baseURL}/${params.id}`);
@@ -46,5 +52,4 @@ export async function getStaticProps({ params }) {
         };
     }
 }
-
 export default NewsDetailPage;

@@ -20,6 +20,7 @@
 .header li {
     margin-right: 30px;
     transition: 0.5s;
+    font-size: 1.4rem;
 }
 .header li:hover {
     color: crimson;

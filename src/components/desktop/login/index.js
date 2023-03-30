@@ -39,17 +39,17 @@ const Login = ({ onFinish, loading }) => {
                         size="large"
                         required
                         type="password"
-
                     />
 
-                    <Button loading={loading} type="primary" size="large" htmlType="submit" style={{ width: '100%' }}>
+                    <Button
+                        loading={loading}
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        style={{ width: '100%', backgroundColor: '#9f224e' }}
+                    >
                         Login
                     </Button>
-                    <center className="s-mt4px">
-                        <small>
-                            {brandName} - © Copyright {new Date().getFullYear()}. All Rights Reserved
-                        </small>
-                    </center>
                 </Form>
             </div>
         </div>
