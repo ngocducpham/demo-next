@@ -103,7 +103,7 @@ const ProfileMobile = ({ data }) => {
                                 className="profile-form-button"
                                 type="primary"
                                 htmlType="submit"
-                                style={{ width: '100%', height:'3rem', fontSize:'1.5rem' }}
+                                style={{ width: '100%', height:'3rem', fontSize:'1.5rem', backgroundColor:'#9F224E' }}
                                 // icon={<SaveOutlined />}
                             >
                                 Save
