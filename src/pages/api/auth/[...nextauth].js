@@ -23,7 +23,7 @@ async function refreshAccessToken(tokenObject) {
     }
 }
 
-export default NextAuth({
+export const authOptions = {
     session: {
         strategy: 'jwt',
     },
@@ -105,4 +105,6 @@ export default NextAuth({
             return session;
         },
     },
-});
+};
+
+export default NextAuth(authOptions);
