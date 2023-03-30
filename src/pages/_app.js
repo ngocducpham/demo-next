@@ -13,8 +13,7 @@ export default function App({ Component, pageProps: { session, error, ...pagePro
     if (error === 'Unauthorized') {
         signOut();
         return null;
-    } else if (error) {
-        return <Error statusCode={401} title="You do not have permission to access this page." />;
+        // return <Error statusCode={401} title="You do not have permission to access this page." />;
     }
 
     return (
