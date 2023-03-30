@@ -103,7 +103,7 @@ const Profile = ({ data }) => {
                                 // className="profile-form-button"
                                 type="primary"
                                 htmlType="submit"
-                                style={{ width: '100%', backgroundColor:'#9F224E'}}
+                                style={{ width: '100%', backgroundColor: '#9F224E' }}
                                 // icon={<SaveOutlined />}
                             >
                                 Save

@@ -34,7 +34,7 @@ const Popular = ({ news }) => {
     };
     return (
         <>
-           <section className={styles.popular}>
+            <section className={styles.popular}>
                 <Heading title="Popular" />
                 <div className="content">
                     <Slider {...settings}>

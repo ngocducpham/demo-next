@@ -27,7 +27,6 @@ const Header = () => {
                                         <a
                                             onClick={() => {
                                                 signOut();
-                                                showSucsessMessage('Log out success');
                                             }}
                                         >
                                             Sign out

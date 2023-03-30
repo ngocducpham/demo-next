@@ -52,6 +52,7 @@
 }
 .details img {
     margin: 1.875rem 0;
+    max-width: 100%;
 }
 .desctop p {
     margin: 1.25rem 0;

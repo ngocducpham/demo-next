@@ -10,8 +10,8 @@ import { useSession } from 'next-auth/react';
 const ProfileMobile = ({ data }) => {
     const { profile } = data;
     const session = useSession();
-    const [loading, setLoading] = useState(false);
-    const [avatar, setAvatar] = useState(profile.avatar || '');
+    const [ loading, setLoading ] = useState(false);
+    const [ avatar, setAvatar ] = useState(profile.avatar || '');
     const handleSubmit = async (values) => {
         const res = await sendRequest(
             {
@@ -26,7 +26,7 @@ const ProfileMobile = ({ data }) => {
                 },
             },
             null,
-            session.data.user.accessToken
+            session.data.user.accessToken,
         );
         if (res.data.result) {
             showSucsessMessage(res.data.message);
@@ -47,7 +47,7 @@ const ProfileMobile = ({ data }) => {
                 },
             },
             null,
-            session.data.user.accessToken
+            session.data.user.accessToken,
         );
         if (res.data.result) {
             setAvatar(res.data.data.filePath);
@@ -65,7 +65,7 @@ const ProfileMobile = ({ data }) => {
                 style={{ width: '30rem', marginTop: '2rem' }}
                 className={styles.formMobile}
             >
-                <Row gutter={[16, 0]} justify="center">
+                <Row gutter={[ 16, 0 ]} justify="center">
                     <Col span={8}>
                         <CropImageField loading={loading} uploadFile={handleUpload} name="avatar" imageUrl={avatar} />
                     </Col>

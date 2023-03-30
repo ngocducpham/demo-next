@@ -23,7 +23,22 @@ const withAuth = (accessType, cb) => {
             };
         }
 
-        return await cb({ session, context });
+        try {
+            return await cb({ session, context });
+        } catch (e) {
+            const { error, defaultProps } = e;
+            if (error?.response.status === 401) {
+                return {
+                    props: {
+                        ...defaultProps,
+                        error: 'Unauthorized',
+                    },
+                };
+            }
+            return {
+                props: defaultProps,
+            };
+        }
     };
 };
 

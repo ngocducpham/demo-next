@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './hero.module.css';
 import classNames from 'classnames';
 import { formatDateString, imageLoader } from '@/utils';
-const Card = ({ item: { id, newAvatar, newDescription, newTitle} }) => {
+const Card = ({ item: { id, newAvatar, newDescription, newTitle } }) => {
     return (
         <>
             <div className={styles.box}>

@@ -8,6 +8,7 @@ import PublicLayout from '@/components/layout/PublicLayout';
 import RenderContext from '@/components/common/RenderContext';
 import { deviceDetect } from '@/utils';
 import ProfileMobile from '@/components/mobile/profile';
+
 function ProfilePage(props) {
     return <RenderContext mobile={{ device: ProfileMobile }} desktop={{ device: Profile }} {...props} />;
 }
@@ -41,20 +42,11 @@ export const getServerSideProps = withAuth(accessRouteTypeEnum.REQUIRE_LOGIN, as
             },
         };
     } catch (error) {
-        if (error.response.status === 401) {
-            const { res } = context;
-            res.setHeader('Set-Cookie', 'next-auth.session-token=; Max-Age=0; Path=/;');
-            return {
-                redirect: {
-                    destination: '/login',
-                    permanent: false,
-                },
-            };
-        }
-        return {
-            props: {
+        throw {
+            defaultProps: {
                 data: { profile: {}, initDevice: isMobile },
             },
+            error,
         };
     }
 });

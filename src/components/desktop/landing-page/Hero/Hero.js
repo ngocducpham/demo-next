@@ -8,9 +8,7 @@ const Hero = ({ news }) => {
         <>
             <section className={styles.hero}>
                 <div className={styles.container}>
-                    {items.map((item, index) => {
-                        return <>{index < 4 ? <Card key={item.id} item={item} /> : <></>}</>;
-                    })}
+                    {items.map((item, index) => index < 4 && <Card key={index} item={item} />)}
                 </div>
             </section>
         </>

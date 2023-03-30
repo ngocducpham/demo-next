@@ -19,7 +19,7 @@ function LoginPage(props) {
             redirect: false,
         });
         if (!result?.error) {
-            showSucsessMessage("Login Success")
+            showSucsessMessage('Login Success');
             router.replace('/');
         } else {
             showErrorMessage('Login failed');
@@ -31,7 +31,7 @@ function LoginPage(props) {
             mobile={{ device: LoginMobile }}
             desktop={{ device: Login }}
             onFinish={onFinish}
-            title='Login Page'
+            title="Login Page"
             {...props}
         />
     );
