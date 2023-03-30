@@ -3,13 +3,29 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { sendRequest } from '@/services/api';
 import apiConfig from '@/constants/apiConfig';
 
+async function refreshAccessToken(tokenObject) {
+    try {
+        const response = await sendRequest(apiConfig.account.refreshToken, {
+            refreshToken: tokenObject.refreshToken,
+        });
+
+        return {
+            ...tokenObject,
+            accessToken: response.data.data.token,
+            accessTokenExpires: response.data.data.tokenExpires,
+            refreshToken: response.data.data.refreshToken,
+        };
+    } catch (e) {
+        return {
+            ...tokenObject,
+            error: 'RefreshAccessTokenError',
+        };
+    }
+}
+
 export default NextAuth({
     session: {
         strategy: 'jwt',
-        maxAge: 6 * 24 * 60 * 60,
-    },
-    jwt: {
-        maxAge: 6 * 24 * 60 * 60,
     },
     providers: [
         CredentialsProvider({
@@ -26,7 +42,7 @@ export default NextAuth({
                                 password: credentials.password,
                                 app: 'APP_WEB_CMS',
                             },
-                        }
+                        },
                     );
                     const profile = await sendRequest(
                         {
@@ -36,7 +52,7 @@ export default NextAuth({
                                 Authorization: `Bearer ${login.data.data.token}`,
                             },
                         },
-                        {}
+                        {},
                     );
 
                     return {
@@ -61,6 +77,15 @@ export default NextAuth({
                 token.id = user.id;
                 token.avatar = user.avatar;
                 token.fullName = user.fullName;
+            }
+
+            if (token.refreshToken) {
+                // we need to refresh the access token after accessTokenExpires - 1 hour
+                const shouldRefreshAccessToken = Math.round(token.accessTokenExpires - 60 * 60 * 1000 - Date.now()) < 0;
+
+                if (shouldRefreshAccessToken) {
+                    return await refreshAccessToken(token);
+                }
             }
 
             return token;

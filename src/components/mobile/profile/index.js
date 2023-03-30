@@ -65,51 +65,46 @@ const ProfileMobile = ({ data }) => {
                 style={{ width: '30rem', marginTop: '2rem' }}
                 className={styles.form}
             >
-                    <Row gutter={[16, 0]} justify="center">
-                        <Col span={4}>
-                            <CropImageField
-                                loading={loading}
-                                uploadFile={handleUpload}
-                                name="avatar"
-                                imageUrl={avatar}
-                            />
-                        </Col>
-                    </Row>
-                    <Row justify="center">
-                        <Col span={22}>
-                            <InputTextField size='large' name="email" label="Email" />
-                        </Col>
-                    </Row>
+                <Row gutter={[16, 0]} justify="center">
+                    <Col span={4}>
+                        <CropImageField loading={loading} uploadFile={handleUpload} name="avatar" imageUrl={avatar} />
+                    </Col>
+                </Row>
+                <Row justify="center">
+                    <Col span={22}>
+                        <InputTextField size="large" name="email" label="Email" />
+                    </Col>
+                </Row>
 
-                    <Row justify="center">
-                        <Col span={22}>
-                            <InputTextField  size='large' name="username" label="User Name" />
-                        </Col>
-                    </Row>
-                    <Row justify="center">
-                        <Col span={22}>
-                            <InputTextField  size='large' name="phone" label="Phone" />
-                        </Col>
-                    </Row>
-                    <Row justify="center">
-                        <Col span={22}>
-                            <InputTextField  size='large' name="fullName" label="Full Name" required />
-                        </Col>
-                    </Row>
-                    <Row justify="center">
-                        <Col span={22}>
-                            <Button
-                                // loading={loading}
-                                className="profile-form-button"
-                                type="primary"
-                                htmlType="submit"
-                                style={{ width: '100%', height:'3rem', fontSize:'1.5rem', backgroundColor:'#9F224E' }}
-                                // icon={<SaveOutlined />}
-                            >
-                                Save
-                            </Button>
-                        </Col>
-                    </Row>
+                <Row justify="center">
+                    <Col span={22}>
+                        <InputTextField size="large" name="username" label="User Name" />
+                    </Col>
+                </Row>
+                <Row justify="center">
+                    <Col span={22}>
+                        <InputTextField size="large" name="phone" label="Phone" />
+                    </Col>
+                </Row>
+                <Row justify="center">
+                    <Col span={22}>
+                        <InputTextField size="large" name="fullName" label="Full Name" required />
+                    </Col>
+                </Row>
+                <Row justify="center">
+                    <Col span={22}>
+                        <Button
+                            // loading={loading}
+                            className="profile-form-button"
+                            type="primary"
+                            htmlType="submit"
+                            style={{ width: '100%', height: '3rem', fontSize: '1.5rem', backgroundColor: '#9F224E' }}
+                            // icon={<SaveOutlined />}
+                        >
+                            Save
+                        </Button>
+                    </Col>
+                </Row>
             </Form>
         </section>
     );

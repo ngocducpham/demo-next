@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './hero.module.css';
 import Card from './Card';
 const Hero = ({ news }) => {
-    const [items, setIems] = useState(news.data || []);
+    const [ items, setIems ] = useState(news.data || []);
 
     return (
         <>

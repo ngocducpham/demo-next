@@ -1,7 +1,7 @@
 import authSlice from "./authSlice";
 
 const rootReducer = {
-    auth: authSlice
+    auth: authSlice,
 };
 
 export default rootReducer;
