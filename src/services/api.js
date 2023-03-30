@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// Handle refresh token
 const axiosInstance = axios.create();
 
 
