@@ -63,10 +63,10 @@ const ProfileMobile = ({ data }) => {
                 layout="vertical"
                 // onValuesChange={this.onValuesChange}
                 style={{ width: '30rem', marginTop: '2rem' }}
-                className={styles.form}
+                className={styles.formMobile}
             >
                 <Row gutter={[16, 0]} justify="center">
-                    <Col span={4}>
+                    <Col span={8}>
                         <CropImageField loading={loading} uploadFile={handleUpload} name="avatar" imageUrl={avatar} />
                     </Col>
                 </Row>

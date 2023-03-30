@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        domains: ['shop-api.developteam.net'],
+        domains: ['spring-api-template.developteam.net'],
     },
 };
 

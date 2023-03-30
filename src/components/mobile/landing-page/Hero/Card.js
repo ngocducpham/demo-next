@@ -4,24 +4,24 @@ import Image from 'next/image';
 import styles from './hero.module.css';
 import classNames from 'classnames';
 import { formatDateString, imageLoader } from '@/utils';
-const Card = ({ item: { id, avatar, description, title, createdBy, createdDate } }) => {
+const Card = ({ item: { id, newAvatar, newDescription, newTitle} }) => {
     return (
         <>
             <div className={styles.box}>
                 <div className={styles.img}>
-                    <Image width={1280} height={1024} src={imageLoader(avatar)} alt="" />
+                    <Image width={1280} height={1024} src={imageLoader(newAvatar)} alt="" />
                 </div>
                 <div className={styles.text}>
-                    <span className={styles.category}>{description}</span>
+                    <span className={styles.category}>{newDescription}</span>
                     {/*<h1 className='titleBg'>{title}</h1>*/}
                     <Link href={`/news/${id}`}>
-                        <h1 className={styles.titleBg}>{title}</h1>
+                        <h1 className={styles.titleBg}>{newTitle}</h1>
                     </Link>
                     <div className={classNames(styles.author, 'flex')}>
-                        <span>by {createdBy}</span>
+                        {/* <span>by {createdBy}</span>
                         <span>
                             {formatDateString(createdDate)}
-                        </span>
+                        </span> */}
                     </div>
                 </div>
             </div>

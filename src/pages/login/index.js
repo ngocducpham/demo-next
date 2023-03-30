@@ -1,5 +1,5 @@
 import React from 'react';
-import { showErrorMessage } from '@/services/notifyService';
+import { showErrorMessage, showSucsessMessage } from '@/services/notifyService';
 import { useRouter } from 'next/router';
 import Login from '@/components/desktop/login';
 import PublicLayout from '@/components/layout/PublicLayout';
@@ -19,6 +19,7 @@ function LoginPage(props) {
             redirect: false,
         });
         if (!result?.error) {
+            showSucsessMessage("Login Success")
             router.replace('/');
         } else {
             showErrorMessage('Login failed');

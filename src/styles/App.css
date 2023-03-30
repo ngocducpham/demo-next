@@ -17,10 +17,21 @@ html {
     html {
         font-size: 26px;
     }
+    .ant-upload {
+        width: 200px !important;
+        height: 200px !important;
+    }
+    .ant-upload-text{
+        font-size: 1.3rem;
+    }
 }
 @media only screen and (max-width: 450px) {
     html {
         font-size: 24px;
+    }
+    .ant-upload {
+        width: 200px !important;
+        height: 200px !important;
     }
 }
 
@@ -128,7 +139,7 @@ a {
     box-shadow: rgba(0, 0, 0, 0.2) 0rem 0.9375rem 0.625rem -0.625rem;
 }
 
-.loginForm .ant-form-item-explain-error{
+.loginForm .ant-form-item-explain-error {
     font-size: 28px !important;
 }
 

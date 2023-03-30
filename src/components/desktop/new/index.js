@@ -8,12 +8,12 @@ const NewDetail = ({ news }) => {
         <main className={styles.main}>
             <div className={styles.container}>
                 <section className={classNames(styles.mainContent, styles.details)}>
-                    <h1 className={styles.title}>{news.title}</h1>
+                    <h1 className={styles.title}>{news.newTitle}</h1>
 
                     <div className={styles.author}>
-                        <span style={{ marginRight: '10px' }}>by {news.createdBy} on </span>
+                        {/* <span style={{ marginRight: '10px' }}>by {news.createdBy} on </span> */}
                         {/* <img src={news.authorImg} alt="" /> */}
-                        <label>{formatDateString(news.createdDate) || ''}</label>
+                        {/* <label>{formatDateString(news.createdDate) || ''}</label> */}
                     </div>
 
                     <div className={styles.social}>
@@ -32,7 +32,7 @@ const NewDetail = ({ news }) => {
                             <i className="fa fa-envelope"></i>
                         </div>
                     </div>
-                    <div className={styles.content} dangerouslySetInnerHTML={{ __html: news.content }}></div>
+                    <div className={styles.content} dangerouslySetInnerHTML={{ __html: news.newContent }}></div>
                 </section>
                 <section className={styles.sideContent}>
                     <Side />

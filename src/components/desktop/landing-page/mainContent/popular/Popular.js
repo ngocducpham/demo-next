@@ -47,17 +47,17 @@ const Popular = ({ news }) => {
                                     >
                                         <div className={classNames(styles.images, 'row')}>
                                             <div className={styles.img}>
-                                                <Image width={500} height={500} src={imageLoader(val.avatar)} alt="" />
+                                                <Image width={500} height={500} src={imageLoader(val.newAvatar)} alt="" />
                                             </div>
                                             <div className="category category1">
-                                                <span>{val.description}</span>
+                                                <span>{val.newDescription}</span>
                                             </div>
                                         </div>
                                         <div className={classNames(styles.text, 'row')}>
-                                            <h1 className="title">{val.title.slice(0, 40)}...</h1>
+                                            <h1 className="title">{val.newTitle.slice(0, 40)}...</h1>
                                             <div className={styles.date}>
                                                 <i className="fas fa-calendar-days"></i>
-                                                <label>{formatDateString(val.time)}</label>
+                                                <label></label>
                                             </div>
                                             <div className={styles.comment}>
                                                 <i className="fas fa-comments"></i>
