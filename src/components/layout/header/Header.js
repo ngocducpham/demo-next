@@ -5,7 +5,7 @@ import styles from './header.module.css';
 import { signOut, useSession } from 'next-auth/react';
 import { showSucsessMessage } from '@/services/notifyService';
 const Header = () => {
-    const [navbar, setNavbar] = useState(false);
+    const [ navbar, setNavbar ] = useState(false);
     const session = useSession();
     return (
         <>

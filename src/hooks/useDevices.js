@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import UAParser from "ua-parser-js";
 
 const useDevices = () => {
-  const [isMobile, setIsMobile] = useState(false);
+    const [ isMobile, setIsMobile ] = useState(false);
 
-  useEffect(() => {
-    const parser = new UAParser();
-    const result = parser.getResult();
+    useEffect(() => {
+        const parser = new UAParser();
+        const result = parser.getResult();
 
-    setIsMobile(result.device.type === "mobile");
-  }, []);
+        setIsMobile(result.device.type === "mobile");
+    }, []);
 
-  return isMobile;
+    return isMobile;
 };
 
 export default useDevices;

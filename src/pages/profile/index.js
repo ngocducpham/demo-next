@@ -31,7 +31,7 @@ export const getServerSideProps = withAuth(accessRouteTypeEnum.REQUIRE_LOGIN, as
                     Authorization: `Bearer ${session.user.accessToken}`,
                 },
             },
-            {}
+            {},
         );
         let profile = {};
         if (res.data.result && res.data.data) profile = res.data.data;
@@ -41,7 +41,16 @@ export const getServerSideProps = withAuth(accessRouteTypeEnum.REQUIRE_LOGIN, as
             },
         };
     } catch (error) {
-        console.error(error);
+        if (error.response.status === 401) {
+            const { res } = context;
+            res.setHeader('Set-Cookie', 'next-auth.session-token=; Max-Age=0; Path=/;');
+            return {
+                redirect: {
+                    destination: '/login',
+                    permanent: false,
+                },
+            };
+        }
         return {
             props: {
                 data: { profile: {}, initDevice: isMobile },

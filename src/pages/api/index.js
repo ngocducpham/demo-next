@@ -19,10 +19,10 @@ export default async function handler(req, res) {
             },
             {
                 data: req.body,
-            }
+            },
         );
     }catch{
-        res.status(401).json({message: 'Unauthorized'});
+        res.status(401).json({ message: 'Unauthorized' });
     }
     res.status(request.status).json(request.data);
 }
